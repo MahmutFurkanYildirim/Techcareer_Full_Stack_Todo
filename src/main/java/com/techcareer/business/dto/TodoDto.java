@@ -30,9 +30,9 @@ public class TodoDto implements Serializable {
     private String todoDescription;
     //todoStatus
     @Builder.Default
-    private Status todoStatus = Status.INCOMPLETE;
+    private String todoStatus = Status.INCOMPLETE.toString();
     //todoPriority
-    private Priority todoPriority;
+    private String todoPriority;
     //todoCreatedDate
     private Date todoCreatedDate;
     //todoUpdatedDate

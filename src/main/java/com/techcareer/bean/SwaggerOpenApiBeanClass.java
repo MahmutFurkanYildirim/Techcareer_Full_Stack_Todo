@@ -34,7 +34,7 @@ public class SwaggerOpenApiBeanClass {
                         .version("V1.0")
                         .contact(new Contact()
                                 .name("Techcareer")
-                                .url("www.techcareer.net")
+                                .url("https://www.techcareer.net/")
                                 .email("support@techcareer.net"))
                         .termsOfService(" Software INC.")
                         .license(

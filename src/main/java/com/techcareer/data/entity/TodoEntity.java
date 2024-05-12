@@ -32,14 +32,14 @@ public class TodoEntity implements Serializable {
     @Column(name = "todo_id")
     private long todoId;
     //todoDescription
-    @Column(name = "todo_description", nullable = false)
+    @Column(name = "todo_description", nullable = false,columnDefinition = "varchar(255)")
     private String todoDescription;
     //todoStatus
     @Column(name = "todo_status")
-    private Status todoStatus = Status.INCOMPLETE;
+    private String todoStatus;
     //todoPriority
     @Column(name = "todo_priority")
-    private Priority todoPriority;
+    private String todoPriority;
     //todoCreatedDate
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

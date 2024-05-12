@@ -17,6 +17,7 @@ import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 // Lombok
@@ -135,6 +136,7 @@ public class TodoServicesImpl implements ITodoServices<TodoDto, TodoEntity> {
         TodoEntity todoUpdateEntity = dtoToEntity(todoDtoFind);
         if (todoUpdateEntity != null) {
             todoUpdateEntity.setTodoDescription(todoDto.getTodoDescription());
+            todoUpdateEntity.setTodoUpdatedDate(new Date());
             iTodoRepository.save(todoUpdateEntity);
         }
         // Set ID and Date on Dto

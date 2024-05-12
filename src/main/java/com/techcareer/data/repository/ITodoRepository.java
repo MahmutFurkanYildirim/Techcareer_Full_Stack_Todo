@@ -31,9 +31,4 @@ public interface ITodoRepository extends JpaRepository<TodoEntity,Long> {
     // select * from TodoList as t where t.todo_priority
     List<TodoEntity> findByTodoPriority(Priority todoPriority);
 
-    @Modifying
-    @Transactional
-    @Query("UPDATE TodoList t SET t.todoUpdatedDate = CURRENT_TIMESTAMP WHERE t.todoId = :todoId")
-    int updateTodoUpdatedDate(@Param("todoId") Long todoId);
-
 }//end ITodoRepository
