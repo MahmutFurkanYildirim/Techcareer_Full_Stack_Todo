@@ -35,5 +35,7 @@ public class TodoDto implements Serializable {
     private Priority todoPriority;
     //todoCreatedDate
     private Date todoCreatedDate;
+    //todoUpdatedDate
+    private Date todoUpdatedDate;
 
 }//end TodoDto

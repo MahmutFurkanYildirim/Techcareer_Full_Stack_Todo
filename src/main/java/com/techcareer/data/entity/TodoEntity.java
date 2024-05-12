@@ -43,5 +43,9 @@ public class TodoEntity implements Serializable {
     //todoCreatedDate
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "todo_created_date")
     private Date todoCreatedDate;
+    //todoUpdatedDate
+    @Column(name = "todo_updated_date")
+    private Date todoUpdatedDate;
 }//end TodoEntity
