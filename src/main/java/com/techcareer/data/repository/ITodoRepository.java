@@ -3,9 +3,14 @@ package com.techcareer.data.repository;
 import com.techcareer.data.entity.TodoEntity;
 import com.techcareer.role.Priority;
 import com.techcareer.role.Status;
-import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 // CrudRepository<RoleEntity,Long>
@@ -13,17 +18,22 @@ import java.util.Optional;
 // PagingAndSortingRepository<RoleEntity,Long>
 
 @Repository
-public interface ITodoRepository extends CrudRepository<TodoEntity,Long> {
+public interface ITodoRepository extends JpaRepository<TodoEntity,Long> {
 
     // Delivered Query (database query)
     // Find todoDescription in the database
     //select * from TodoList as t where t.todo_description
-    Optional<TodoEntity> findByTodoDescription(String todoDescription);
+    //Optional<TodoEntity> findByTodoDescription(String todoDescription);
     //Find todoStatus in the database
     // select * from TodoList as t where t.todo_status
-    Optional<TodoEntity> findByTodoStatus(Status todoStatus);
+    List<TodoEntity> findByTodoStatus(Status todoStatus);
     //Find todoPriority in the database
     // select * from TodoList as t where t.todo_priority
-    Optional<TodoEntity> findByTodoPriority(Priority todoPriority);
+    List<TodoEntity> findByTodoPriority(Priority todoPriority);
+
+    @Modifying
+    @Transactional
+    @Query("UPDATE TodoList t SET t.todoUpdatedDate = CURRENT_TIMESTAMP WHERE t.todoId = :todoId")
+    int updateTodoUpdatedDate(@Param("todoId") Long todoId);
 
 }//end ITodoRepository

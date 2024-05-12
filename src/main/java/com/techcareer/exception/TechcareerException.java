@@ -9,10 +9,10 @@ package com.techcareer.exception;
 // 502 : Kötü Ağ Geçidi  (Bad Gateway)
 
 // My Special Exception
-public class techcareerException extends Exception {
+public class TechcareerException extends RuntimeException {
 
     //Constructor(Parametreli)
-    public techcareerException(String message) {
+    public TechcareerException(String message) {
         super(message);
     }
 }
