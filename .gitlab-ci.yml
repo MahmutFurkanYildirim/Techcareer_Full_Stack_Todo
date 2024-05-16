@@ -5,7 +5,7 @@ variables:
   # name_surname => CI//CD ben eklediğim
   MAVEN_OPTS: -Dmaven.repo.local=.m2/repository
   DOCKER_DRIVER: overlay
-
+#Deneme
 image: maven:latest
 
 cache:
