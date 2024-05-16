@@ -211,7 +211,7 @@ BLOG PROJECT !
 <h2 align="center">Development by Mahmut Furkan YILDIRIM</h2>
 
 <p align="center">
-  <a href="https://github.com/mahmutfurkan">
+  <a href="https://github.com/MahmutFurkanYildirim">
     <img src="https://img.shields.io/badge/GitHub-MahmutFurkanYildirim-blue?style=flat-square&logo=github" alt="GitHub Badge">
   </a>
 </p>
