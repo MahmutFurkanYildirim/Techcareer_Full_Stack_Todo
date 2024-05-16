@@ -4,6 +4,35 @@
 ![GitHub Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png)
 
 ![README PNG](image/SpringImage.png)
+---
+```
+Git Clone 
+
+git clone https://github.com/MahmutFurkanYildirim/Techcareer_Full_Stack_Todo
+```
+---
+## Version
+git -v java -version node -v npm -v
+```
+git checkout -b backend
+cat >> backend.txt
+backend
+Ctrl+C
+git add .
+git commit -m "backend"
+git push -u origin backend
+git checkout master 
+
+git branch frontend
+git checkout frontend veya git switch frontend
+cat >> frontend.txt
+frontend
+Ctrl+C
+git add .
+git commit -m "frontend"
+git push -u origin frontend
+git checkout master 
+```
 
 ---
 ## Todolist Project:
