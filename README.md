@@ -208,6 +208,23 @@ BLOG PROJECT !
 
 ---
 
+<h2 align="center">Special Thanks</h2>
+
+<p align="center">
+  <a href="https://github.com/hamitmizrak">
+    <img src="https://img.shields.io/badge/Hamit%20Mizrak-GitHub-blue?style=for-the-badge&logo=github" alt="Hamit Mizrak GitHub">
+  </a>
+  &nbsp;
+  <a href="https://www.techcareer.net/">
+    <img src="https://img.shields.io/badge/TechCareer-Website-brightgreen?style=for-the-badge&logo=google-chrome" alt="TechCareer Website">
+  </a>
+</p>
+
+<p align="center">
+  <em>for their support and resources.</em>
+</p>
+
+---
 <h2 align="center">Development by Mahmut Furkan YILDIRIM</h2>
 
 <p align="center">
