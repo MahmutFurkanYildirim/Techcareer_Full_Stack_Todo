@@ -1,5 +1,5 @@
 #! /bin/bash
-#Deneme
+
 mvn clean verify sonar:sonar \
   -Dsonar.projectKey=spring_boot_sonar \
   -Dsonar.host.url=http://localhost:9000 \
