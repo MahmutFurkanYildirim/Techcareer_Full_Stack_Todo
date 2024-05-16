@@ -212,7 +212,7 @@ BLOG PROJECT !
 
 <p align="center">
   <a href="https://github.com/mahmutfurkan">
-    <img src="https://img.shields.io/badge/GitHub-Mahmut%20Furkan%20YILDIRIM-blue?style=flat-square&logo=github" alt="GitHub Badge">
+    <img src="https://img.shields.io/badge/GitHub-MahmutFurkanYildirim-blue?style=flat-square&logo=github" alt="GitHub Badge">
   </a>
 </p>
 
