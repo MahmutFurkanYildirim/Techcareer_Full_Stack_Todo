@@ -21,7 +21,7 @@ import java.util.List;
 
 // API (REST)
 @RestController
-@RequestMapping("/todo/api/v1.0.0")
+@RequestMapping("/todolist/api/v1.0.0")
 @CrossOrigin //CORS: Error
 //@CrossOrigin(origins = ProjectUrl.REACT_FRONTEND_PORT_URL)
 //@CrossOrigin(origins = "localhost:3000")
@@ -33,8 +33,8 @@ public class TodoApiImpl implements ITodoApi<TodoDto> {
     // Error
     private ApiResult apiResult;
 
-    // CREATE Todo(Api)
-    // http://localhost:4444/todo/api/v1.0.0/create
+    // CREATE To-do(Api)
+    // http://localhost:4444/todolist/api/v1.0.0/create
     @PostMapping("/create")
     @Override
     public ResponseEntity<?> todoApiCreate(@Valid @RequestBody TodoDto todoDtoData) {
@@ -65,8 +65,8 @@ public class TodoApiImpl implements ITodoApi<TodoDto> {
         return ResponseEntity.status(201).body(todoCreateApi);
     }//end todoApiCreate
 
-    // LIST Todo(Api)
-    // http://localhost:4444/todo/api/v1.0.0/list
+    // LIST To-do(Api)
+    // http://localhost:4444/todolist/api/v1.0.0/list
     @GetMapping("/list")
     @Override
     public ResponseEntity<List<TodoDto>> todoApiList() {
@@ -74,16 +74,16 @@ public class TodoApiImpl implements ITodoApi<TodoDto> {
         return ResponseEntity.ok(iTodoServices.todoServiceList());
     }//end todoApiList
 
-    // FIND Todo(Api)
-    // http://localhost:4444/todo/api/v1.0.0/find
-    // http://localhost:4444/todo/api/v1.0.0/find/0
-    // http://localhost:4444/todo/api/v1.0.0/find/1
+    // FIND To-do(Api)
+    // http://localhost:4444/todolist/api/v1.0.0/find
+    // http://localhost:4444/todolist/api/v1.0.0/find/0
+    // http://localhost:4444/todolist/api/v1.0.0/find/1
     @Override
     @GetMapping({"/find","/find/{id}"})
     public ResponseEntity<?> todoApiFindById(@PathVariable(name="id",required = false) Long id) {
         TodoDto roleFindApi=(TodoDto)iTodoServices.todoServiceFindById(id);
         if(roleFindApi==null){
-            // Eğer kaydederken null değer gelirse
+            // If a null value comes while saving
             ApiResult apiResultFind=ApiResult.builder()
                     .status(404)
                     .error("Todo Not Found")
@@ -97,34 +97,36 @@ public class TodoApiImpl implements ITodoApi<TodoDto> {
         return ResponseEntity.ok(roleFindApi);
     }//end todoApiFindById
 
-    // FIND By-Priority Todo(Api)
-    // http://localhost:4444/todo/api/v1.0.0/find/priority
+    // FIND By-Priority To-do(Api)
+    // http://localhost:4444/todolist/api/v1.0.0/find/priority
     @Override
-    public ResponseEntity<List<?>> todoApiFindByPriority(@PathVariable Priority priority) {
+    @GetMapping("/find/priority/{priority}")
+    public ResponseEntity<List<?>> todoApiFindByPriority(@PathVariable("priority") Priority priority) {
         List<?> FindByPriority=iTodoServices.todoServiceFindByPriority(priority);
         log.info("Todo API Priority Listed");
         return ResponseEntity.ok(FindByPriority);
     }//end todoApiFindByPriority
 
-    // FIND By-Priority Todo(Api)
-    // http://localhost:4444/todo/api/v1.0.0/find/status
+    // FIND By-Priority To-do(Api)
+    // http://localhost:4444/todolist/api/v1.0.0/find/status
     @Override
-    public ResponseEntity<List<?>> todoApiFindByStatus(@PathVariable Status status) {
+    @GetMapping("/find/status/{status}")
+    public ResponseEntity<List<?>> todoApiFindByStatus(@PathVariable("status") Status status) {
         List<?> FindByStatus=iTodoServices.todoServiceFindByStatus(status);
         log.info("Todo API Status Listed");
         return ResponseEntity.ok(FindByStatus);
     }//end todoApiFindByStatus
 
-    // UPDATE Todo(Api)
-    // http://localhost:4444/todo/api/v1.0.0/update
-    // http://localhost:4444/todo/api/v1.0.0/update/0
-    // http://localhost:4444/todo/api/v1.0.0/update/1
+    // UPDATE To-do(Api)
+    // http://localhost:4444/todolist/api/v1.0.0/update
+    // http://localhost:4444/todolist/api/v1.0.0/update/0
+    // http://localhost:4444/todolist/api/v1.0.0/update/1
     @Override
     @PutMapping({"/update","/update/{id}"})
     public ResponseEntity<?> todoApiUpdateById(@PathVariable(name="id",required = false) Long id, @Valid @RequestBody TodoDto todoDto) {
         TodoDto roleUpdateApi=(TodoDto)iTodoServices.todoServiceUpdateById(id,todoDto);
         if(roleUpdateApi==null){
-            // Eğer kaydederken null değer gelirse
+            // If a null value comes while saving
             ApiResult apiResultFind=ApiResult.builder()
                     .status(404)
                     .error("Todo Not Found")
@@ -138,10 +140,10 @@ public class TodoApiImpl implements ITodoApi<TodoDto> {
         return ResponseEntity.ok(roleUpdateApi);
     }//end todoApiUpdateById
 
-    // DELETE Todo(Api)
-    // http://localhost:4444/todo/api/v1.0.0/delete
-    // http://localhost:4444/todo/api/v1.0.0/delete/0
-    // http://localhost:4444/todo/api/v1.0.0/delete/1
+    // DELETE To-do(Api)
+    // http://localhost:4444/todolist/api/v1.0.0/delete
+    // http://localhost:4444/todolist/api/v1.0.0/delete/0
+    // http://localhost:4444/todolist/api/v1.0.0/delete/1
     @Override
     @DeleteMapping({"/delete","/delete/{id}"})
     public ResponseEntity<?> todoApiDeleteById(@PathVariable(name="id",required = false) Long id) {

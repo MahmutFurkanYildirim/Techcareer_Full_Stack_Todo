@@ -1,6 +1,5 @@
 package com.techcareer.business.dto;
 
-import com.techcareer.role.Priority;
 import com.techcareer.role.Status;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
@@ -24,7 +23,7 @@ public class TodoDto implements Serializable {
     // SERILESTIRME
     public static final Long serialVersionUID = 1L;
     //todoID
-    private long todoId;
+    private Long todoId;
     //todoDescription
     @NotEmpty(message = "{todo.Description.validation.constraints.NotNull.message}")
     private String todoDescription;

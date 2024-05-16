@@ -30,16 +30,18 @@ public class TodoEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "todo_id")
-    private long todoId;
+    private Long todoId;
     //todoDescription
     @Column(name = "todo_description", nullable = false,columnDefinition = "varchar(255)")
     private String todoDescription;
     //todoStatus
+    @Enumerated(EnumType.STRING)
     @Column(name = "todo_status")
-    private String todoStatus;
+    private Status todoStatus;
     //todoPriority
+    @Enumerated(EnumType.STRING)
     @Column(name = "todo_priority")
-    private String todoPriority;
+    private Priority todoPriority;
     //todoCreatedDate
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)

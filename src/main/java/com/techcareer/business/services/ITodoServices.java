@@ -14,27 +14,26 @@ public interface ITodoServices<D,E> {
     public E dtoToEntity(D d);
 
     // ***************************************** //
-    // TODO CRUD
+    // TO-DO CRUD
 
-    // CREATE Todo(Service)
+    // CREATE To-do(Service)
     public D todoServiceCreate(D d);
 
-    // LIST Todo(Service)
+    // LIST To-do(Service)
     public List<D> todoServiceList();
 
-    // FIND BY-ID Todo(Service)
+    // FIND BY-ID To-do(Service)
     public D todoServiceFindById(Long id);
 
-    //TODO Priority ve Status Dto kisimlarini tekrardan goz gecir!!!!
-    // FIND BY-PRIORITY Todo(Service)
+    // FIND BY-PRIORITY To-do(Service)
     public List<D> todoServiceFindByPriority(Priority priority);
 
-    // FIND BY-STATUS Todo(Service)
+    // FIND BY-STATUS To-do(Service)
     public List<D> todoServiceFindByStatus(Status status);
 
-    // UPDATE Todo(Service)
+    // UPDATE To-do(Service)
     public D todoServiceUpdateById(Long id,D d);
 
-    // DELETE Todo(Service)
+    // DELETE To-do(Service)
     public D todoServiceDeleteById(Long id);
 }//end ITodoServices

@@ -9,7 +9,6 @@ import com.techcareer.exception.Resource404NotFoundException;
 import com.techcareer.exception.TechcareerException;
 import com.techcareer.role.Priority;
 import com.techcareer.role.Status;
-import lombok.SneakyThrows;
 import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -49,7 +48,7 @@ public class TodoServicesImpl implements ITodoServices<TodoDto, TodoEntity> {
 
     ///////////////////////////////////////////////////////////////////////////////////////
     //**** CRUD*****************************************************************//
-    // CREATE (TODO)
+    // CREATE (TO-DO)
     @Override
     @Transactional// Create,Update,Delete
     public TodoDto todoServiceCreate(TodoDto todoDto) {
@@ -64,7 +63,7 @@ public class TodoServicesImpl implements ITodoServices<TodoDto, TodoEntity> {
         return todoDto;
     }//end todoServiceCreate
 
-    // LIST (TODO)
+    // LIST (TO-DO)
     @Override
     public List<TodoDto> todoServiceList() {
         //Entity List
@@ -78,6 +77,10 @@ public class TodoServicesImpl implements ITodoServices<TodoDto, TodoEntity> {
             todoDtoList.add(todoDto1);
         }
 
+        if (todoDtoList.isEmpty()) {
+            throw new TechcareerException("Todo List is empty");
+        }
+
         return todoDtoList;
     }//end todoServiceList
 
@@ -88,23 +91,29 @@ public class TodoServicesImpl implements ITodoServices<TodoDto, TodoEntity> {
         TodoEntity todoEntity = null;
         if (booleanTodoServiceFindById) {
             todoEntity = iTodoRepository.findById(id).orElseThrow(
-                    ()-> new Resource404NotFoundException(id + " Id not found")
+                    ()-> new Resource404NotFoundException("Todo dto id is null")
             );
         }else{
-            throw new TechcareerException("Todo dto id is null");
+            throw new TechcareerException(id + " Id not found");
         }
         return entityToDto(todoEntity);
     }//end todoServiceFindById
+
 
     //FIND (TodoByPriority)
     @Override
     public List<TodoDto> todoServiceFindByPriority(Priority priority) {
         // Find TodoEntities
-        List<TodoEntity> todoEntityList = iTodoRepository.findByTodoPriority(priority);
+        List<TodoEntity> todoPriorityList = iTodoRepository.findByTodoPriority(priority);
+
+        //Check todoEntityList if it is empty throw exception
+        if (todoPriorityList.isEmpty()) {
+            throw new Resource404NotFoundException("No todos found with priority: " + priority);
+        }
         // Create dto list
         List<TodoDto> todoDtoList = new ArrayList<>();
         // Convert Entities to Dtos
-        for (TodoEntity temp : todoEntityList) {
+        for (TodoEntity temp : todoPriorityList) {
             TodoDto todoDto = entityToDto(temp);
             todoDtoList.add(todoDto);
         }
@@ -115,27 +124,42 @@ public class TodoServicesImpl implements ITodoServices<TodoDto, TodoEntity> {
     @Override
     public List<TodoDto> todoServiceFindByStatus(Status status) {
         // Find TodoEntities
-        List<TodoEntity> todoEntityList = iTodoRepository.findByTodoStatus(status);
+        List<TodoEntity> todoStatusList = iTodoRepository.findByTodoStatus(status);
+
+        //Check todoStatusList if it is empty throw exception
+        if (todoStatusList.isEmpty()) {
+            throw new Resource404NotFoundException("No todos found with status: " + status);
+        }
+
         // Create dto list
         List<TodoDto> todoDtoList = new ArrayList<>();
 
-        for (TodoEntity temp : todoEntityList) {
+        for (TodoEntity temp : todoStatusList) {
             TodoDto todoDto = entityToDto(temp);
             todoDtoList.add(todoDto);
         }
         return todoDtoList;
     }//end todoServiceFindByStatus
 
-    //UPDATE (TODO)
+    //UPDATE (TO-DO)
     @Override
     @Transactional// Create,Update,Delete
     public TodoDto todoServiceUpdateById(Long id, TodoDto todoDto) {
         //Find
         TodoDto todoDtoFind = todoServiceFindById(id);
+
+        //Check todoDtoFind if is null throw exception
+        if(todoDtoFind == null)
+        {
+            throw new Resource404NotFoundException("Todo dto id not found");
+        }
+
         //Update
         TodoEntity todoUpdateEntity = dtoToEntity(todoDtoFind);
         if (todoUpdateEntity != null) {
             todoUpdateEntity.setTodoDescription(todoDto.getTodoDescription());
+            todoUpdateEntity.setTodoStatus(Status.valueOf(todoDto.getTodoStatus()));
+            todoUpdateEntity.setTodoPriority(Priority.valueOf(todoDto.getTodoPriority()));
             todoUpdateEntity.setTodoUpdatedDate(new Date());
             iTodoRepository.save(todoUpdateEntity);
         }
@@ -145,12 +169,17 @@ public class TodoServicesImpl implements ITodoServices<TodoDto, TodoEntity> {
         return entityToDto(todoUpdateEntity);
     }//end todoServiceUpdateById
 
-    //DELETE (TODO)
+    //DELETE (TO-DO)
     @Override
     @Transactional// Create,Update,Delete
     public TodoDto todoServiceDeleteById(Long id) {
         //Find
         TodoDto todoDtoFind = todoServiceFindById(id);
+
+        if(todoDtoFind == null)
+        {
+            throw new Resource404NotFoundException("Todo dto id not found");
+        }
 
         TodoEntity todoDeleteEntity = dtoToEntity(todoDtoFind);
         if (todoDeleteEntity != null) {

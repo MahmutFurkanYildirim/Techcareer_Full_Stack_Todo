@@ -10,25 +10,25 @@ import java.util.List;
 // D: Dto
 public interface ITodoApi<D> {
 
-    // TODO CRUD
-    // Todo Create
+    // TO-DO CRUD
+    // To-do Create
     public ResponseEntity<?> todoApiCreate(D d);
 
-    // Todo List
+    // To-do List
     public ResponseEntity<List<D>> todoApiList();
 
-    // Todo Find ID
+    // To-do Find ID
     public ResponseEntity<?> todoApiFindById(Long id);
 
-    // Todo Find Priority
+    // To-do Find Priority
     public ResponseEntity<List<?>> todoApiFindByPriority(Priority priority);
 
-    //Todo Find Status
+    //To-do Find Status
     public ResponseEntity<List<?>> todoApiFindByStatus(Status status);
 
-    // Todo Update ID, Object
+    // To-do Update ID, Object
     public ResponseEntity<?> todoApiUpdateById(Long id, D d);
 
-    // Todo Delete ID
+    // To-do Delete ID
     public ResponseEntity<?> todoApiDeleteById(Long id);
 }

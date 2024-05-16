@@ -29,18 +29,14 @@ public class SwaggerOpenApiBeanClass {
     public OpenAPI swaggerOpenApiMethod() {
         return new OpenAPI().info(
                 new Info()
-                        .title("title bilgisi")
-                        .description("description bilgisi")
+                        .title("Techcareer")
+                        .description("Techcareer Information")
                         .version("V1.0")
                         .contact(new Contact()
                                 .name("Techcareer")
                                 .url("https://www.techcareer.net/")
                                 .email("support@techcareer.net"))
-                        .termsOfService(" Software INC.")
-                        .license(
-                                new License()
-                                        .name("Licence ")
-                                        .url("www."))
+
         );
     }//end swaggerOpenApiMethod
 
