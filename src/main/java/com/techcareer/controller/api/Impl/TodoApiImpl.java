@@ -107,7 +107,7 @@ public class TodoApiImpl implements ITodoApi<TodoDto> {
         return ResponseEntity.ok(FindByPriority);
     }//end todoApiFindByPriority
 
-    // FIND By-Priority To-do(Api)
+    // FIND By-Status To-do(Api)
     // http://localhost:4444/todolist/api/v1.0.0/find/status
     @Override
     @GetMapping("/find/status/{status}")
