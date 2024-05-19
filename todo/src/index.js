@@ -1,17 +1,16 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import reportWebVitals from './reportWebVitals';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import reportWebVitals from "./reportWebVitals";
+import "bootstrap/dist/css/bootstrap.min.css";
 // Router
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter } from "react-router-dom";
 
 // Components
-import TodoCreate from './components/TodoCreate';
-import TodoList from './components/TodoList';
-
+import TodoCreate from "./components/TodoCreate";
+import TodoList from "./components/TodoList";
 
 // ROOT - DOM
-const root = ReactDOM.createRoot(document.getElementById('root'));
+const root = ReactDOM.createRoot(document.getElementById("root"));
 
 // RENDER
 root.render(
@@ -19,7 +18,7 @@ root.render(
     <BrowserRouter>
       <div>
         <TodoCreate />
-        <TodoList /> 
+        <TodoList />
       </div>
     </BrowserRouter>
   </React.StrictMode>

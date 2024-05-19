@@ -7,14 +7,15 @@ function TodoList() {
   const [filteredTodos, setFilteredTodos] = useState([]);
   const [showModal, setShowModal] = useState(false);
   const [currentTodo, setCurrentTodo] = useState(null);
-  const [updatedDescription, setUpdatedDescription] = useState('');
-  const [updatedPriority, setUpdatedPriority] = useState('MEDIUM');
-  const [completedTodos, setCompletedTodos] = useState([]);
+  const [updatedDescription, setUpdatedDescription] = useState("");
+  const [updatedPriority, setUpdatedPriority] = useState("MEDIUM");
 
+  // Component yüklendiğinde yapılacak işlemler (fetchTodoList'i çağır)
   useEffect(() => {
     fetchTodoList();
   }, []);
 
+  // Todo listesi verilerini API'den çek ve state'leri güncelle
   const fetchTodoList = () => {
     TodoApi.todoApiList()
       .then((response) => {
@@ -28,6 +29,7 @@ function TodoList() {
       });
   };
 
+  // Status'a göre filtreleme yap
   const filterByStatus = (status) => {
     if (status === "All") {
       setFilteredTodos(todos);
@@ -35,11 +37,14 @@ function TodoList() {
       const doneTodos = todos.filter((todo) => todo.todoStatus === "COMPLETE");
       setFilteredTodos(doneTodos);
     } else if (status === "Pending") {
-      const pendingTodos = todos.filter((todo) => todo.todoStatus === "INCOMPLETE");
+      const pendingTodos = todos.filter(
+        (todo) => todo.todoStatus === "INCOMPLETE"
+      );
       setFilteredTodos(pendingTodos);
     }
   };
 
+  // Priority'ye göre filtreleme yap
   const filterByPriority = (priority) => {
     const filteredByPriority = todos.filter(
       (todo) => todo.todoPriority === priority
@@ -47,6 +52,7 @@ function TodoList() {
     setFilteredTodos(filteredByPriority);
   };
 
+  // Belirli bir Todo'yu sil
   const handleDelete = (id) => {
     if (window.confirm(`${id} id'li veriyi silmek istiyor musunuz?`)) {
       TodoApi.todoApiDeleteById(id)
@@ -67,19 +73,32 @@ function TodoList() {
     }
   };
 
+  // Todo'nun tamamlanma durumunu değiştir
   const handleComplete = async (id) => {
     try {
       const updatedTodos = todos.map((todo) =>
-        todo.todoId === id ? { ...todo, todoStatus: todo.todoStatus === "COMPLETE" ? "INCOMPLETE" : "COMPLETE" } : todo
+        todo.todoId === id
+          ? {
+              ...todo,
+              todoStatus:
+                todo.todoStatus === "COMPLETE" ? "INCOMPLETE" : "COMPLETE",
+            }
+          : todo
       );
       const updatedFilteredTodos = filteredTodos.map((todo) =>
-        todo.todoId === id ? { ...todo, todoStatus: todo.todoStatus === "COMPLETE" ? "INCOMPLETE" : "COMPLETE" } : todo
+        todo.todoId === id
+          ? {
+              ...todo,
+              todoStatus:
+                todo.todoStatus === "COMPLETE" ? "INCOMPLETE" : "COMPLETE",
+            }
+          : todo
       );
-  
+
       // Frontend'deki state'i güncelle
       setTodos(updatedTodos);
       setFilteredTodos(updatedFilteredTodos);
-  
+
       // Backend'e güncelleme isteği gönder
       const todoToUpdate = updatedTodos.find((todo) => todo.todoId === id);
       await TodoApi.todoApiUpdateById(id, todoToUpdate);
@@ -89,14 +108,19 @@ function TodoList() {
     }
   };
 
+  // Tamamlanmış tüm görevleri sil
   const handleDeleteDoneTasks = () => {
     const doneTasks = todos.filter((todo) => todo.todoStatus === "COMPLETE");
-  
+
     Promise.all(doneTasks.map((todo) => TodoApi.todoApiDeleteById(todo.todoId)))
       .then((responses) => {
-        const allSuccessful = responses.every((response) => response.status === 200);
+        const allSuccessful = responses.every(
+          (response) => response.status === 200
+        );
         if (allSuccessful) {
-          setTodos((prevTodos) => prevTodos.filter((item) => item.todoStatus === "INCOMPLETE"));
+          setTodos((prevTodos) =>
+            prevTodos.filter((item) => item.todoStatus === "INCOMPLETE")
+          );
           setFilteredTodos((prevFilteredTodos) =>
             prevFilteredTodos.filter((item) => item.todoStatus === "INCOMPLETE")
           );
@@ -110,6 +134,7 @@ function TodoList() {
       });
   };
 
+  // Tüm görevleri sil
   const handleDeleteAll = () => {
     if (window.confirm("Tüm verileri silmek istediğinize emin misiniz?")) {
       TodoApi.todoApiDeleteAll()
@@ -127,6 +152,7 @@ function TodoList() {
     }
   };
 
+  // Bir Todo'yu düzenleme moduna geçir
   const handleEdit = (todo) => {
     setCurrentTodo(todo);
     setUpdatedDescription(todo.todoDescription);
@@ -134,6 +160,7 @@ function TodoList() {
     setShowModal(true);
   };
 
+  // Bir Todo'yu güncelle
   const handleUpdateTodo = async () => {
     if (currentTodo) {
       const updatedTodo = {
@@ -143,7 +170,10 @@ function TodoList() {
       };
 
       try {
-        const response = await TodoApi.todoApiUpdateById(currentTodo.todoId, updatedTodo);
+        const response = await TodoApi.todoApiUpdateById(
+          currentTodo.todoId,
+          updatedTodo
+        );
         if (response.status === 200) {
           const updatedTodos = todos.map((todo) =>
             todo.todoId === currentTodo.todoId ? updatedTodo : todo
@@ -208,7 +238,7 @@ function TodoList() {
             <ul className="dropdown-menu" aria-labelledby="priorityDropdown">
               <li>
                 <button
-                  className ="dropdown-item"
+                  className="dropdown-item"
                   onClick={() => filterByPriority("HIGH")}
                 >
                   HIGH
@@ -250,19 +280,22 @@ function TodoList() {
           {filteredTodos.map((todo) => (
             <div className="row mt-2" key={todo.todoId}>
               <div
-    className={`col-md-4 ${todo.todoStatus === "COMPLETE" ? "completed-todo" : ""}`}
-    onClick={() => handleComplete(todo.todoId)}
-    style={{ cursor: "pointer" }}
->
-    <strong
-        style={{
-            textDecoration: todo.todoStatus === "COMPLETE" ? "line-through" : "none",
-            color: todo.todoStatus === "COMPLETE" ? "red" : "inherit",
-        }}
-    >
-        {todo.todoDescription}
-    </strong>
-</div>
+                className={`col-md-4 ${
+                  todo.todoStatus === "COMPLETE" ? "completed-todo" : ""
+                }`}
+                onClick={() => handleComplete(todo.todoId)}
+                style={{ cursor: "pointer" }}
+              >
+                <strong
+                  style={{
+                    textDecoration:
+                      todo.todoStatus === "COMPLETE" ? "line-through" : "none",
+                    color: todo.todoStatus === "COMPLETE" ? "red" : "inherit",
+                  }}
+                >
+                  {todo.todoDescription}
+                </strong>
+              </div>
               <div className="col-md-2">{todo.todoPriority}</div>
               <div className="col-md-4">
                 <button
