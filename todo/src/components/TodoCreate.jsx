@@ -13,17 +13,17 @@ const TodoCreate = ({ t, i18n, props }) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Todo açıklaması değiştiğinde çağrılacak fonksiyon
-  const handleTodoNameChange = (e) => {
+  const TodoNameChange = (e) => {
     setTodoDescription(e.target.value);
   };
 
   // Öncelik değiştiğinde çağrılacak fonksiyon
-  const handlePriorityChange = (e) => {
+  const PriorityChange = (e) => {
     setPriority(e.target.value);
   };
 
   // Form gönderildiğinde çağrılacak fonksiyon
-  const handleSubmit = async (e) => {
+  const Submit = async (e) => {
     e.preventDefault();
     setError(null);
     setIsSubmitting(true);
@@ -57,7 +57,7 @@ const TodoCreate = ({ t, i18n, props }) => {
   return (
     <div className="container mt-5">
       <h1 className="text-center">Create to-do</h1>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={Submit}>
         <div className="form-group">
           <label htmlFor="todoName">Enter description</label>
           <input
@@ -66,7 +66,7 @@ const TodoCreate = ({ t, i18n, props }) => {
             id="todoDescription"
             name="todoDescription"
             value={todoDescription}
-            onChange={handleTodoNameChange}
+            onChange={TodoNameChange}
             placeholder="Enter Todo Description"
             required
           />
@@ -80,7 +80,7 @@ const TodoCreate = ({ t, i18n, props }) => {
             id="priority"
             name="priority"
             value={todoPriority}
-            onChange={handlePriorityChange}
+            onChange={PriorityChange}
           >
             <option value="HIGH">HIGH</option>
             <option value="MEDIUM">MEDIUM</option>

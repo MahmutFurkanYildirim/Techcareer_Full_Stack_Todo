@@ -59,7 +59,7 @@ function TodoList() {
   };
 
   // Belirli bir Todo'yu sil
-  const handleDelete = (id) => {
+  const Delete = (id) => {
     if (window.confirm(`${id} id'li veriyi silmek istiyor musunuz?`)) {
       TodoApi.todoApiDeleteById(id)
         .then((response) => {
@@ -80,7 +80,7 @@ function TodoList() {
   };
 
   // Todo'nun tamamlanma durumunu değiştir
-  const handleComplete = async (id) => {
+  const Complete = async (id) => {
     try {
       const updatedTodos = todos.map((todo) =>
         todo.todoId === id
@@ -115,7 +115,7 @@ function TodoList() {
   };
 
   // Tamamlanmış tüm görevleri sil
-  const handleDeleteDoneTasks = () => {
+  const DeleteDoneTasks = () => {
     const doneTasks = todos.filter((todo) => todo.todoStatus === "COMPLETE");
 
     Promise.all(doneTasks.map((todo) => TodoApi.todoApiDeleteById(todo.todoId)))
@@ -141,7 +141,7 @@ function TodoList() {
   };
 
   // Tüm görevleri sil
-  const handleDeleteAll = () => {
+  const DeleteAll = () => {
     if (window.confirm("Tüm verileri silmek istediğinize emin misiniz?")) {
       TodoApi.todoApiDeleteAll()
         .then((response) => {
@@ -159,7 +159,7 @@ function TodoList() {
   };
 
   // Bir Todo'yu düzenleme moduna geçir
-  const handleEdit = (todo) => {
+  const Edit = (todo) => {
     setCurrentTodo(todo);
     setUpdatedDescription(todo.todoDescription);
     setUpdatedPriority(todo.todoPriority);
@@ -167,7 +167,7 @@ function TodoList() {
   };
 
   // Bir Todo'yu güncelle
-  const handleUpdateTodo = async () => {
+  const UpdateTodo = async () => {
     if (currentTodo) {
       const updatedTodo = {
         ...currentTodo,
@@ -289,7 +289,7 @@ function TodoList() {
                 className={`col-md-4 ${
                   todo.todoStatus === "COMPLETE" ? "completed-todo" : ""
                 }`}
-                onClick={() => handleComplete(todo.todoId)}
+                onClick={() => Complete(todo.todoId)}
                 style={{ cursor: "pointer" }}
               >
                 <strong
@@ -306,12 +306,12 @@ function TodoList() {
               <div className="col-md-4">
                 <button
                   className="btn btn-sm btn-primary me-2"
-                  onClick={() => handleEdit(todo)}
+                  onClick={() => Edit(todo)}
                 >
                   Edit
                 </button>
                 <button
-                  onClick={() => handleDelete(todo.todoId)}
+                  onClick={() => Delete(todo.todoId)}
                   className="btn btn-sm btn-danger me-2"
                 >
                   Delete
@@ -322,7 +322,7 @@ function TodoList() {
                     type="checkbox"
                     checked={todo.todoStatus === "COMPLETE"}
                     id={`completed-${todo.todoId}`}
-                    onChange={() => handleComplete(todo.todoId)}
+                    onChange={() => Complete(todo.todoId)}
                   />
                   <label
                     className="form-check-label"
@@ -337,10 +337,10 @@ function TodoList() {
         </div>
       </div>
       <div className="mt-3">
-        <button onClick={handleDeleteDoneTasks} className="btn btn-danger me-2">
+        <button onClick={DeleteDoneTasks} className="btn btn-danger me-2">
           Delete Done Tasks
         </button>
-        <button onClick={handleDeleteAll} className="btn btn-danger">
+        <button onClick={DeleteAll} className="btn btn-danger">
           Delete All Tasks
         </button>
       </div>
@@ -379,7 +379,7 @@ function TodoList() {
           <Button variant="secondary" onClick={() => setShowModal(false)}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleUpdateTodo}>
+          <Button variant="primary" onClick={UpdateTodo}>
             Save Changes
           </Button>
         </Modal.Footer>
