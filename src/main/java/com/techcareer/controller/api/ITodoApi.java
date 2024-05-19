@@ -3,6 +3,7 @@ package com.techcareer.controller.api;
 import com.techcareer.role.Priority;
 import com.techcareer.role.Status;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 
 import java.util.List;
 
@@ -31,4 +32,9 @@ public interface ITodoApi<D> {
 
     // To-do Delete ID
     public ResponseEntity<?> todoApiDeleteById(Long id);
+
+    // DELETE All To-dos (Api)
+// http://localhost:4444/todolist/api/v1.0.0/deleteAll
+    @DeleteMapping("/deleteAll")
+    ResponseEntity<?> todoApiDeleteAll();
 }

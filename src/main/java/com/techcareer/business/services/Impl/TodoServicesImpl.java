@@ -189,4 +189,11 @@ public class TodoServicesImpl implements ITodoServices<TodoDto, TodoEntity> {
             throw new TechcareerException(todoDtoFind+ "data numbered could not be deleted");
         }
     }//end todoServiceDeleteById
+
+    @Override
+    public void todoServiceDeleteAll() {
+        iTodoRepository.deleteAll();
+    }
+
+
 }//end TodoServicesImpl

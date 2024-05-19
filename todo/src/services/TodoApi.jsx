@@ -34,14 +34,14 @@ class TodoApi {
   // http://localhost:4444/todolist/api/v1.0.0/find/priority
   //@GetMapping("/find/priority/{priority}")
   todoApiFindByPriority(priority) {
-    return axios.get(`${TODO_API_PERSIST_URL}/find/${priority}`);
+    return axios.get(`${TODO_API_PERSIST_URL}/find/priority/${priority}`);
   } //end todoApiFindByPriority
 
   // FIND By-Status To-do(Api)
   // http://localhost:4444/todolist/api/v1.0.0/find/status
   //@GetMapping("/find/status/{status}")
   todoApiFindByStatus(status) {
-    return axios.get(`${TODO_API_PERSIST_URL}/find/${status}`);
+    return axios.get(`${TODO_API_PERSIST_URL}/find/status/${status}`);
   } //end todoApiFindByStatus
 
   // UPDATE To-do(Api)
@@ -59,9 +59,18 @@ class TodoApi {
   // http://localhost:4444/todolist/api/v1.0.0/delete/1
   //@DeleteMapping({"/delete","/delete/{id}"})
   todoApiDeleteById(id) {
-    return axios.delete(`${TODO_API_PERSIST_URL}/update/${id}`);
+    return axios.delete(`${TODO_API_PERSIST_URL}/delete/${id}`);
   } //end todoApiDeleteById
+
+  // DELETE All To-dos (Api)
+  // http://localhost:4444/todolist/api/v1.0.0/deleteAll
+  todoApiDeleteAll(){
+    return axios.delete(`${TODO_API_PERSIST_URL}/deleteAll`)
+  }
+
 } //end class TodoApi
+
+  
 
 //Export default
 export default new TodoApi();

@@ -36,4 +36,7 @@ public interface ITodoServices<D,E> {
 
     // DELETE To-do(Service)
     public D todoServiceDeleteById(Long id);
+
+    //DELETE ALL
+    public void todoServiceDeleteAll();
 }//end ITodoServices

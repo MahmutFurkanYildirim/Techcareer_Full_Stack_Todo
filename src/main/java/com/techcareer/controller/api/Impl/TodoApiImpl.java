@@ -151,4 +151,14 @@ public class TodoApiImpl implements ITodoApi<TodoDto> {
         log.info("Role API Deleted");
         return ResponseEntity.ok(roleDto);
     }//end todoApiDeleteById
+
+    // DELETE All To-dos (Api)
+    // http://localhost:4444/todolist/api/v1.0.0/deleteAll
+    @Override
+    @DeleteMapping("/deleteAll")
+    public ResponseEntity<?> todoApiDeleteAll() {
+        iTodoServices.todoServiceDeleteAll();
+        log.info("All Todos API Deleted");
+        return ResponseEntity.ok().build();
+    }
 }
