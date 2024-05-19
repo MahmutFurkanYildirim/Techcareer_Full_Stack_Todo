@@ -66,7 +66,7 @@ Spring Boot And React JS
 - 📃 TODO LIST
 ---
 
-## TECHNOLOGY && Features
+## TECHNOLOGY && FEATURES
 - HTML5
 - CSS3
 - RESPONSIVE DESIGN
@@ -80,7 +80,7 @@ Spring Boot And React JS
 - SPRING BOOT
 ---
 
-## Libraries && Programming
+## LIBRARIES && PROGRAMMING
 - Lombok
 - Model Mapper
 - Open Api Configuration
@@ -92,7 +92,8 @@ Spring Boot And React JS
 
 ## REACT INSTALL
 
-```sh npm install -g create-react-app 
+``` 
+npm install -g create-react-app 
 npx create-react-app blog
 npm install axios --save 
 npm install react-router-dom --save 
@@ -102,9 +103,9 @@ npm install nodemon --save-dev
 npm install -g nodemon
 npm install cd blog npm start
 ```
+
+## NPM KOMUTLARI
 ```
-## Npm Komutları 
-```sh
 node -v
 npm  -v
 
@@ -159,7 +160,7 @@ npm update # Bütün bağımlılıkları güncellemek
 npm update express 
 ```
 ---
-## Nodemon
+## NODEMON
 ```
 normalde: node index 
 nodemonla birlite: nodemon index otomatikleştiriyoruz.
@@ -183,7 +184,7 @@ npm run nodemon
 npm run nodemon_q
 ```
 ---
-## Installation
+##  INSTALLATION
 ```
 node -v
 npx create-react-app blog
@@ -225,7 +226,7 @@ for project , Port
 | SWAGGER | [API DOCUMENT][http://localhost:4444/swagger-ui.html]|
 
 ---
-## Docker
+## DOCKER
 Project Deployment
 ```
 *STEP-1*
