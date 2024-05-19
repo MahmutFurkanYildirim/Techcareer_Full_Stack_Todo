@@ -9,21 +9,23 @@ Project
 ---
 The project aims to develop a Todo list application using Spring Boot and React JS. This application will perform CRUD (Create, Read, Update, Delete) operations by storing data received from users in a database. This will result in a fully-fledged Fullstack application.
 
+![](https://komarev.com/ghpvc/?username=MahmutFurkanYildirim)
 
 
 ## _N-Tier Architecture_
-![GitHub Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png)
-
-![](https://komarev.com/ghpvc/?username=MahmutFurkanYildirim)
 
 ![README PNG](image/SpringImage.png)
 
+## _Database_
 ![README PNG](image/Database.png)
 
+## _Postman_
 ![README PNG](image/Postman.png)
 
+## _Swagger_
 ![README PNG](image/Swagger.png)
 
+## _Frontend_
 ![README PNG](image/Frontend.png)
 ---
 ```
