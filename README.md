@@ -1,9 +1,30 @@
-# Spring Boot & React JS
-![](https://komarev.com/ghpvc/?username=MahmutFurkanYildirim)
+Spring Boot & React JS
+---
+Proje
+---
+Proje, Spring Boot ve React JS kullanarak bir Todo list uygulaması geliştirmeyi amaçlamaktadır. Bu uygulama, kullanıcıdan alınan verileri veritabanına kaydederek CRUD (Create, Read, Update, Delete) işlemlerini gerçekleştirecektir. Bu sayede, tam kapsamlı bir Fullstack uygulama oluşturulmuş olacaktır.
+
+---
+Project
+---
+The project aims to develop a Todo list application using Spring Boot and React JS. This application will perform CRUD (Create, Read, Update, Delete) operations by storing data received from users in a database. This will result in a fully-fledged Fullstack application.
+
+
+
 ## _N-Tier Architecture_
 ![GitHub Logo](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/GitHub_Invertocat_Logo.svg/200px-GitHub_Invertocat_Logo.svg.png)
 
+![](https://komarev.com/ghpvc/?username=MahmutFurkanYildirim)
+
 ![README PNG](image/SpringImage.png)
+
+![README PNG](image/Database.png)
+
+![README PNG](image/Postman.png)
+
+![README PNG](image/Swagger.png)
+
+![README PNG](image/Frontend.png)
 ---
 ```
 Git Clone 
@@ -58,7 +79,6 @@ Spring Boot And React JS
 ---
 
 ## Libraries && Programming
-- Thymeleaf
 - Lombok
 - Model Mapper
 - Open Api Configuration
