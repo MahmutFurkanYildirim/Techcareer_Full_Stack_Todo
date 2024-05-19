@@ -3,10 +3,13 @@ import React, { useState } from "react";
 import TodoApi from "../services/TodoApi";
 
 const TodoCreate = ({ t, i18n, props }) => {
-  // Durumları (state'leri) tanımla
+  // Kullanıcının girdiği todo açıklamasını saklamak için state
   const [todoDescription, setTodoDescription] = useState("");
+  // Kullanıcının belirlediği todo önceliğini saklamak için state
   const [todoPriority, setPriority] = useState("MEDIUM");
+  // Hata mesajlarını saklamak için state
   const [error, setError] = useState(null);
+  // Formun gönderilme durumunu kontrol etmek için state
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Todo açıklaması değiştiğinde çağrılacak fonksiyon

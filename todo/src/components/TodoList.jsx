@@ -3,11 +3,17 @@ import TodoApi from "../services/TodoApi";
 import { Modal, Button } from "react-bootstrap";
 
 function TodoList() {
+  // Tüm todo öğelerini saklamak için state
   const [todos, setTodos] = useState([]);
+  // Filtrelenmiş todo öğelerini saklamak için state
   const [filteredTodos, setFilteredTodos] = useState([]);
+  // Modalın görünürlüğünü kontrol etmek için state
   const [showModal, setShowModal] = useState(false);
+  // Düzenlenen todo öğesini saklamak için state
   const [currentTodo, setCurrentTodo] = useState(null);
+  // Güncellenmiş todo açıklamasını saklamak için state
   const [updatedDescription, setUpdatedDescription] = useState("");
+  // Güncellenmiş todo önceliğini saklamak için state
   const [updatedPriority, setUpdatedPriority] = useState("MEDIUM");
 
   // Component yüklendiğinde yapılacak işlemler (fetchTodoList'i çağır)
@@ -187,7 +193,7 @@ function TodoList() {
         alert("Todo could not be updated. Please try again.");
       }
     }
-  };
+  }; //end TodoList
 
   return (
     <div className="container mt-5">

@@ -64,6 +64,7 @@ class TodoApi {
 
   // DELETE All To-dos (Api)
   // http://localhost:4444/todolist/api/v1.0.0/deleteAll
+  //@DeleteMapping("/deleteAll")
   todoApiDeleteAll(){
     return axios.delete(`${TODO_API_PERSIST_URL}/deleteAll`)
   }
